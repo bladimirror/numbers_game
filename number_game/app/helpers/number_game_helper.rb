@@ -1,0 +1,2 @@
+module NumberGameHelper
+end

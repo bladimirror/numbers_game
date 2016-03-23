@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title> Greate Numbers Game </title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	</head>
+
+	<body>
+		<div class=<%= @div_color %> >
+			<div class="jumbotron01"> 
+				<h1 class="lead">Welcome to the Great Numbers Game! <h1>
+				<p class="lead"> I am thinking of an <%= flash[:hint] %> number between 1 and 100</p>
+				<p class="lead"> Take a Guess </p>
+				<p class="lead"> <%= flash[:guess_result] %> </p>
+				<p class="lead"> Attempt <%= @counter %> </p>
+				<form class="navbar-form navbar-center" action="/guess">
+					<div class="form-group">
+						<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+						<input type="number" class="form-control" name="user_guess">
+						<input class="btn btn-primary" type='submit' value='Submit' />
+					</div>
+				</form>
+				<form class="navbar-form navbar-center" action="/new_game">
+					<div class="form-group">
+						<input class="btn btn-primary" type='submit' value='New Game' />
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id='number_game_table'>
+			<table class="table table-hover">
+				<thead>
+					<th> Previous Guesses </th>
+				</thead>
+				<% @fetch_guess.each do |get_data| %>
+					<tbody>
+						<td> <%= get_data.user_guess %> </td>
+					</tbody>
+				<% end %>
+			</table>
+		</div>
+	</body>
+</html>
